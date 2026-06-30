@@ -60,9 +60,23 @@ CREATE POLICY "Allow public read" ON public.restaurants FOR SELECT USING (true);
 CREATE POLICY "Allow public insert" ON public.restaurants FOR INSERT WITH CHECK (true);
 
 -- 5. MASUKKAN DATA RESTORAN DEFAULT (MOCK DATA)
--- Restoran-restoran ini disesuaikan dengan koordinat geografis area Malang/Jawa Timur (atau ubah sesuai keinginan)
+-- Restoran-restoran ini disesuaikan dengan koordinat geografis area Malang/Jawa Timur
 INSERT INTO public.restaurants (name, rating, delivery_time, image, category, lat, lng) VALUES
 ('Pizza Palace', 4.8, '15-20 mnt', 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&h=200&fit=crop', 'Pizza', -7.9424, 112.6156),
 ('Burger Barn', 4.6, '10-15 mnt', 'https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=400&h=200&fit=crop', 'Burger', -7.9524, 112.6256),
 ('Pasta House', 4.7, '20-25 mnt', 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=200&fit=crop', 'Pasta', -7.9624, 112.6356),
 ('Green Bowl', 4.5, '10-15 mnt', 'https://images.unsplash.com/photo-1565895405138-6c3a1555da6a?w=400&h=200&fit=crop', 'Sehat', -7.9724, 112.6456);
+
+-- 6. MASUKKAN DATA USER DEFAULT (MOCK DATA UNTUK LOGIN & DEMO)
+INSERT INTO public.users (name, email, password, pin, role, status, address, coords, plate_number, vehicle_type, sim_photo, document_file, shop_name, food_category) VALUES
+-- Akun Pelanggan (Customer) - Status Approved (bisa langsung login & belanja)
+('Budi Santoso (Pelanggan)', 'pelanggan@fastfood.com', 'user123', '123456', 'customer', 'approved', 'Jl. Sukarno Hatta No. 15A, Lowokwaru, Malang', '{"lat": -7.9424, "lng": 112.6156}', NULL, NULL, NULL, NULL, NULL, NULL),
+
+-- Akun Kurir (Courier) - Status Approved (bisa langsung terima order)
+('Joko Susilo (Kurir)', 'kurir@fastfood.com', 'user123', NULL, 'courier', 'approved', 'Jl. Dinoyo No. 88, Lowokwaru, Malang', '{"lat": -7.9524, "lng": 112.6256}', 'N 1234 AB', 'Motor Bebek', 'https://images.unsplash.com/photo-1557223562-6c77ef16210f?w=200', NULL, NULL, NULL),
+
+-- Akun Merchant (Restoran) - Status Approved (bisa kelola menu)
+('Siti Aminah (Toko)', 'toko@fastfood.com', 'user123', NULL, 'merchant', 'approved', 'Jl. Gajayana No. 4, Lowokwaru, Malang', '{"lat": -7.9624, "lng": 112.6356}', NULL, NULL, NULL, 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=200', 'Warung Bu Siti', 'Nusantara'),
+
+-- Akun Tambahan (Status Pending untuk simulasi Admin menyetujui akun)
+('Andi Wijaya (Pending)', 'andi.pending@fastfood.com', 'user123', '123456', 'customer', 'pending', 'Jl. Borobudur No. 12, Malang', '{"lat": -7.9724, "lng": 112.6456}', NULL, NULL, NULL, NULL, NULL, NULL);
