@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panduan Fitur Baru - Demo Users & Sistem Pembayaran Premium</title>
+  <!-- Tailwind CSS CDN untuk styling yang cepat dan indah -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    /* Mengatur style khusus saat dicetak sebagai PDF */
+    @media print {
+      body {
+        background-color: white;
+        color: black;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+      .shadow-card {
+        border: 1px solid #e5e7eb;
+        box-shadow: none !important;
+      }
+    }
+    .shadow-card {
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 8px -1px rgba(0, 0, 0, 0.03);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 print:bg-white print:text-black">
+
+  <!-- ── BANNER PETUNJUK CETAK (NO-PRINT) ── -->
+  <div class="no-print bg-orange-500 text-white py-4 px-6 sticky top-0 z-50 shadow-md flex justify-between items-center">
+    <div class="flex items-center gap-3">
+      <span class="text-2xl">📋</span>
+      <div>
+        <p class="font-bold text-sm">Dokumen Siap Cetak / Simpan ke PDF</p>
+        <p class="text-xs text-orange-100">Buka halaman ini, tekan tombol <strong class="bg-orange-600 px-1.5 py-0.5 rounded">Ctrl + P</strong> pada browser, lalu pilih opsi <strong>"Save as PDF"</strong>.</p>
+      </div>
+    </div>
+    <button onclick="window.print()" class="bg-white text-orange-600 font-extrabold px-5 py-2 rounded-xl text-xs shadow-md hover:bg-orange-50 transition-all">
+      🖨️ Cetak PDF Sekarang
+    </button>
+  </div>
+
+  <!-- ── WRAPPER UTAMA DOKUMEN ── -->
+  <div class="max-w-4xl mx-auto my-8 bg-white p-8 md:p-16 rounded-3xl shadow-xl border border-slate-100 print:shadow-none print:border-none print:my-0 print:p-0">
+    
+    <!-- ========================================== -->
+    <!-- 📄 HALAMAN COVER -->
+    <!-- ========================================== -->
+    <div class="min-h-[80vh] flex flex-col justify-between items-center text-center py-12 relative overflow-hidden">
+      <!-- Ornamen Latar Belakang -->
+      <div class="absolute -top-24 -left-24 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div>
+        <span class="text-orange-500 text-xs font-black tracking-widest uppercase bg-orange-50 px-4 py-2 rounded-full">
+          Dokumentasi Fitur Tambahan
+        </span>
+      </div>
+
+      <div class="my-auto space-y-6">
+        <div class="flex justify-center">
+          <div class="w-20 h-20 rounded-3xl bg-gradient-to-tr from-orange-500 to-amber-500 flex items-center justify-center shadow-lg shadow-orange-500/20">
+            <span class="text-4xl text-white">💳</span>
+          </div>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-black text-slate-900 tracking-tight leading-none">
+          PANDUAN MOCK USERS &<br>
+          PEMBAYARAN MULTI-FITUR
+        </h1>
+        <p class="text-base md:text-lg text-slate-500 font-medium max-w-xl mx-auto leading-relaxed">
+          Dokumen panduan teknis implementasi akun uji coba (mock users) dan fitur metode pembayaran premium terstruktur pada aplikasi FastFood.
+        </p>
+        <div class="h-1 w-20 bg-orange-500 mx-auto rounded-full"></div>
+      </div>
+
+      <div class="space-y-2 w-full text-xs text-slate-400">
+        <p class="font-bold text-slate-500">Dibuat khusus untuk presentasi uji kelayakan sistem mandiri</p>
+        <p>Aplikasi FastFood - 2026</p>
+      </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- ========================================== -->
+    <!-- 📄 BAGIAN 1: AKUN PENGGUNA DEMO (MOCK DATA) -->
+    <!-- ========================================== -->
+    <div class="py-12 space-y-8">
+      <div>
+        <h2 class="text-2xl font-black text-slate-900 tracking-tight flex items-center gap-2.5">
+          <span class="text-orange-500">01.</span> Akun Pengguna Demo Siap Pakai
+        </h2>
+        <p class="text-sm text-slate-500 mt-1">Daftar kredensial instan di database online untuk mempermudah demonstrasi aplikasi.</p>
+        <div class="h-0.5 bg-slate-100 mt-4"></div>
+      </div>
+
+      <p class="text-xs text-slate-600 leading-relaxed text-justify">
+        Untuk mempercepat proses pengujian fungsionalitas multi-role tanpa harus mendaftarkan akun baru secara manual, database proyek telah diisi dengan data pengguna bawaan (mock data) yang mencakup semua jenis peran:
+      </p>
+
+      <!-- Tabel Kredensial -->
+      <div class="overflow-x-auto border border-slate-100 rounded-2xl shadow-card">
+        <table class="w-full text-left text-xs border-collapse">
+          <thead>
+            <tr class="bg-slate-50 text-slate-500 uppercase tracking-wider font-bold">
+              <th class="p-4 border-b border-slate-100">Nama Akun</th>
+              <th class="p-4 border-b border-slate-100">Email Login</th>
+              <th class="p-4 border-b border-slate-100">Sandi</th>
+              <th class="p-4 border-b border-slate-100">Role</th>
+              <th class="p-4 border-b border-slate-100">PIN</th>
+              <th class="p-4 border-b border-slate-100">Status</th>
+            </tr>
+          </thead>
+          <tbody class="text-slate-600 font-medium">
+            <tr class="hover:bg-slate-50/50">
+              <td class="p-4 border-b border-slate-100 font-bold text-slate-800">Budi Santoso</td>
+              <td class="p-4 border-b border-slate-100 font-mono">pelanggan@fastfood.com</td>
+              <td class="p-4 border-b border-slate-100 font-mono">user123</td>
+              <td class="p-4 border-b border-slate-100"><span class="bg-blue-50 text-blue-600 px-2 py-0.5 rounded text-[10px] font-bold">Customer</span></td>
+              <td class="p-4 border-b border-slate-100 font-mono">123456</td>
+              <td class="p-4 border-b border-slate-100"><span class="bg-green-50 text-green-600 px-2 py-0.5 rounded text-[10px] font-bold">Approved</span></td>
+            </tr>
+            <tr class="hover:bg-slate-50/50">
+              <td class="p-4 border-b border-slate-100 font-bold text-slate-800">Joko Susilo</td>
+              <td class="p-4 border-b border-slate-100 font-mono">kurir@fastfood.com</td>
+              <td class="p-4 border-b border-slate-100 font-mono">user123</td>
+              <td class="p-4 border-b border-slate-100"><span class="bg-purple-50 text-purple-600 px-2 py-0.5 rounded text-[10px] font-bold">Courier</span></td>
+              <td class="p-4 border-b border-slate-100 text-slate-400">-</td>
+              <td class="p-4 border-b border-slate-100"><span class="bg-green-50 text-green-600 px-2 py-0.5 rounded text-[10px] font-bold">Approved</span></td>
+            </tr>
+            <tr class="hover:bg-slate-50/50">
+              <td class="p-4 border-b border-slate-100 font-bold text-slate-800">Siti Aminah</td>
+              <td class="p-4 border-b border-slate-100 font-mono">toko@fastfood.com</td>
+              <td class="p-4 border-b border-slate-100 font-mono">user123</td>
+              <td class="p-4 border-b border-slate-100"><span class="bg-amber-50 text-amber-600 px-2 py-0.5 rounded text-[10px] font-bold">Merchant</span></td>
+              <td class="p-4 border-b border-slate-100 text-slate-400">-</td>
+              <td class="p-4 border-b border-slate-100"><span class="bg-green-50 text-green-600 px-2 py-0.5 rounded text-[10px] font-bold">Approved</span></td>
+            </tr>
+            <tr class="hover:bg-slate-50/50">
+              <td class="p-4 border-b border-slate-100 font-bold text-slate-800">Andi Wijaya</td>
+              <td class="p-4 border-b border-slate-100 font-mono">andi.pending@fastfood.com</td>
+              <td class="p-4 border-b border-slate-100 font-mono">user123</td>
+              <td class="p-4 border-b border-slate-100"><span class="bg-blue-50 text-blue-600 px-2 py-0.5 rounded text-[10px] font-bold">Customer</span></td>
+              <td class="p-4 border-b border-slate-100 font-mono">123456</td>
+              <td class="p-4 border-b border-slate-100"><span class="bg-red-50 text-red-600 px-2 py-0.5 rounded text-[10px] font-bold">Pending</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Skenario Penggunaan -->
+      <div class="bg-orange-50/50 border border-orange-100 p-5 rounded-2xl space-y-3 text-left">
+        <h4 class="text-xs font-bold text-orange-600 uppercase tracking-wider flex items-center gap-1.5">💡 Skenario Praktik Presentasi:</h4>
+        <ul class="text-xs text-slate-600 space-y-2 list-disc pl-4">
+          <li><strong>Skenario Belanja</strong>: Login sebagai <strong>pelanggan@fastfood.com</strong> -> belanja menu -> checkout -> masukkan PIN <strong>123456</strong> -> berhasil masuk ke halaman lacak pesanan.</li>
+          <li><strong>Skenario Manajemen Admin</strong>: Login sebagai administrator (<code>admin@fastfood.com</code> / <code>admin123</code>) -> buka halaman Admin Dashboard -> setujui pendaftaran user pending <strong>Andi Wijaya</strong> agar statusnya berubah menjadi <em>Approved</em>.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- ========================================== -->
+    <!-- 📄 BAGIAN 2: UPGRADE SISTEM PEMBAYARAN -->
+    <!-- ========================================== -->
+    <div class="py-12 space-y-8">
+      <div>
+        <h2 class="text-2xl font-black text-slate-900 tracking-tight flex items-center gap-2.5">
+          <span class="text-orange-500">02.</span> Pembaruan Sistem Pembayaran Premium
+        </h2>
+        <p class="text-sm text-slate-500 mt-1">Ulasan fungsionalitas checkout & integrasi multi-fitur pembayaran.</p>
+        <div class="h-0.5 bg-slate-100 mt-4"></div>
+      </div>
+
+      <p class="text-xs text-slate-600 leading-relaxed text-justify">
+        Sistem kasir (checkout panel) pada keranjang belanja dimodifikasi dengan menambahkan fitur-fitur transaksi e-commerce modern:
+      </p>
+
+      <!-- Fitur Rinci -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        
+        <!-- Kurir & Voucher -->
+        <div class="border border-slate-100 p-5 rounded-2xl shadow-card space-y-3">
+          <h3 class="text-xs font-black text-slate-800 uppercase tracking-wider flex items-center gap-1.5">🛵 OPSI PENGIRIMAN & VOUCHER</h3>
+          <ul class="text-xs text-slate-600 space-y-2 list-decimal pl-4">
+            <li><strong>Pilihan Paket Kurir</strong>:
+              <ul class="list-disc pl-4 text-slate-500 mt-1 space-y-0.5">
+                <li>Reguler (Rp 10.000)</li>
+                <li>Hemat (Rp 5.000)</li>
+                <li>Express ⚡ (Rp 18.000)</li>
+              </ul>
+            </li>
+            <li><strong>Kode Voucher Diskon Aktif</strong>:
+              <ul class="list-disc pl-4 text-slate-500 mt-1 space-y-0.5">
+                <li><code>DISKON30</code>: Diskon 30% maks Rp 30.000.</li>
+                <li><code>MAKANGRATIS</code>: Potongan instan Rp 50.000.</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 12+ Metode Pembayaran -->
+        <div class="border border-slate-100 p-5 rounded-2xl shadow-card space-y-3">
+          <h3 class="text-xs font-black text-slate-800 uppercase tracking-wider flex items-center gap-1.5">💳 12+ METODE PEMBAYARAN</h3>
+          <div class="text-xs text-slate-600 space-y-2">
+            <p>Metode pembayaran dikelompokkan dalam kategori tab interaktif:</p>
+            <div class="grid grid-cols-2 gap-1.5 text-[10px] text-slate-500">
+              <span class="bg-slate-50 p-1.5 rounded">📱 <strong>E-Wallet</strong>: GoPay, OVO, DANA, ShopeePay</span>
+              <span class="bg-slate-50 p-1.5 rounded">🏦 <strong>Bank VA</strong>: BCA, Mandiri, BNI, BRI</span>
+              <span class="bg-slate-50 p-1.5 rounded">💳 <strong>Kartu Kredit</strong>: Visa / Mastercard</span>
+              <span class="bg-slate-50 p-1.5 rounded">🏪 <strong>Konter Tunai</strong>: Indomaret, Alfamart</span>
+              <span class="bg-slate-50 p-1.5 rounded">⏱️ <strong>PayLater</strong>: GoPayLater, SPayLater</span>
+              <span class="bg-slate-50 p-1.5 rounded">💵 <strong>COD</strong>: Bayar di Tempat</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Rincian Biaya -->
+      <div class="border border-slate-100 p-5 rounded-2xl shadow-card space-y-3">
+        <h3 class="text-xs font-black text-slate-800 uppercase tracking-wider">📋 RINCIAN STRUK CHECKOUT LENGKAP</h3>
+        <p class="text-xs text-slate-600 leading-relaxed text-justify">
+          Rincian biaya akhir dikalkulasi secara transparan sebelum pembayaran divalidasi PIN keamanannya:
+        </p>
+        <div class="bg-slate-50 p-4 rounded-xl space-y-1.5 font-mono text-[10px] text-slate-600 print:bg-transparent">
+          <div class="flex justify-between"><span>Subtotal Makanan</span><span>Rp 120.000</span></div>
+          <div class="flex justify-between text-green-600"><span>Diskon Voucher (DISKON30)</span><span>-Rp 30.000</span></div>
+          <div class="flex justify-between"><span>Tarif Ongkos Kirim (Reguler)</span><span>+Rp 10.000</span></div>
+          <div class="flex justify-between"><span>Pajak Restoran (10%)</span><span>+Rp 9.000</span></div>
+          <div class="flex justify-between"><span>Biaya Layanan Aplikasi</span><span>+Rp 2.000</span></div>
+          <div class="border-t border-dashed border-gray-300 my-1"></div>
+          <div class="flex justify-between text-xs font-bold text-slate-800"><span>Total Pembayaran (Grand Total)</span><span>Rp 111.000</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 📄 CARA EXPORT PDF (PETUNJUK) -->
+    <!-- ========================================== -->
+    <div class="mt-16 pt-8 border-t border-slate-100 no-print">
+      <h3 class="text-sm font-bold text-slate-800 uppercase tracking-wider mb-2">Panduan Menyimpan Halaman ini sebagai PDF:</h3>
+      <ol class="text-xs text-slate-500 space-y-1 list-decimal pl-4">
+        <li>Klik tombol <strong>"Cetak PDF Sekarang"</strong> di bagian atas layar atau tekan tombol <strong>Ctrl + P</strong>.</li>
+        <li>Pada menu cetak browser, ubah tujuan pencetak (*Destination*) menjadi <strong>"Save as PDF"</strong> atau <strong>"Simpan sebagai PDF"</strong>.</li>
+        <li>Pastikan opsi <strong>"Headers and Footers"</strong> dinonaktifkan agar tampilan lebih bersih.</li>
+        <li>Aktifkan opsi <strong>"Background Graphics"</strong> agar warna tema oranye dan gradien tetap terlihat indah di PDF Anda.</li>
+        <li>Simpan file di komputer Anda dan siap dipresentasikan.</li>
+      </ol>
+    </div>
+
+  </div>
+
+</body>
+</html>
