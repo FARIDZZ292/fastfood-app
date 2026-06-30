@@ -59,24 +59,31 @@ CREATE POLICY "Allow public update" ON public.users FOR UPDATE USING (true);
 CREATE POLICY "Allow public read" ON public.restaurants FOR SELECT USING (true);
 CREATE POLICY "Allow public insert" ON public.restaurants FOR INSERT WITH CHECK (true);
 
--- 5. MASUKKAN DATA RESTORAN DEFAULT (MOCK DATA)
--- Restoran-restoran ini disesuaikan dengan koordinat geografis area Malang/Jawa Timur
+-- 5. MASUKKAN DATA RESTORAN DEFAULT (MOCK DATA TOKO BANYAK)
+-- Ditambahkan toko-toko waralaba besar & lokal untuk memeriahkan antarmuka peta & beranda
 INSERT INTO public.restaurants (name, rating, delivery_time, image, category, lat, lng) VALUES
 ('Pizza Palace', 4.8, '15-20 mnt', 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&h=200&fit=crop', 'Pizza', -7.9424, 112.6156),
 ('Burger Barn', 4.6, '10-15 mnt', 'https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=400&h=200&fit=crop', 'Burger', -7.9524, 112.6256),
 ('Pasta House', 4.7, '20-25 mnt', 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=200&fit=crop', 'Pasta', -7.9624, 112.6356),
-('Green Bowl', 4.5, '10-15 mnt', 'https://images.unsplash.com/photo-1565895405138-6c3a1555da6a?w=400&h=200&fit=crop', 'Sehat', -7.9724, 112.6456);
+('Green Bowl', 4.5, '10-15 mnt', 'https://images.unsplash.com/photo-1565895405138-6c3a1555da6a?w=400&h=200&fit=crop', 'Sehat', -7.9724, 112.6456),
+('KFC Express Malang', 4.9, '10-12 mnt', 'https://images.unsplash.com/photo-1513639776629-7b61b0ac237b?w=400&h=200&fit=crop', 'Ayam', -7.9390, 112.6290),
+('McDonalds Kayutangan', 4.7, '12-15 mnt', 'https://images.unsplash.com/photo-1552566626-52f8b828add9?w=400&h=200&fit=crop', 'Burger', -7.9820, 112.6310),
+('Kopi Kenangan Dinoyo', 4.6, '8-10 mnt', 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&h=200&fit=crop', 'Minuman', -7.9510, 112.6090),
+('Bebek Carok Madura', 4.8, '15-22 mnt', 'https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=200&fit=crop', 'Nusantara', -7.9610, 112.6220);
 
--- 6. MASUKKAN DATA USER DEFAULT (MOCK DATA UNTUK LOGIN & DEMO)
+-- 6. MASUKKAN DATA USER DEFAULT (MOCK DATA UNTUK LOGIN MERCHANT BANYAK & AKUN LAIN)
 INSERT INTO public.users (name, email, password, pin, role, status, address, coords, plate_number, vehicle_type, sim_photo, document_file, shop_name, food_category) VALUES
--- Akun Pelanggan (Customer) - Status Approved (bisa langsung login & belanja)
+-- Akun Pelanggan (Customer)
 ('Budi Santoso (Pelanggan)', 'pelanggan@fastfood.com', 'user123', '123456', 'customer', 'approved', 'Jl. Sukarno Hatta No. 15A, Lowokwaru, Malang', '{"lat": -7.9424, "lng": 112.6156}', NULL, NULL, NULL, NULL, NULL, NULL),
+('Andi Wijaya (Pending)', 'andi.pending@fastfood.com', 'user123', '123456', 'customer', 'pending', 'Jl. Borobudur No. 12, Malang', '{"lat": -7.9724, "lng": 112.6456}', NULL, NULL, NULL, NULL, NULL, NULL),
 
--- Akun Kurir (Courier) - Status Approved (bisa langsung terima order)
+-- Akun Kurir (Courier)
 ('Joko Susilo (Kurir)', 'kurir@fastfood.com', 'user123', NULL, 'courier', 'approved', 'Jl. Dinoyo No. 88, Lowokwaru, Malang', '{"lat": -7.9524, "lng": 112.6256}', 'N 1234 AB', 'Motor Bebek', 'https://images.unsplash.com/photo-1557223562-6c77ef16210f?w=200', NULL, NULL, NULL),
 
--- Akun Merchant (Restoran) - Status Approved (bisa kelola menu)
-('Siti Aminah (Toko)', 'toko@fastfood.com', 'user123', NULL, 'merchant', 'approved', 'Jl. Gajayana No. 4, Lowokwaru, Malang', '{"lat": -7.9624, "lng": 112.6356}', NULL, NULL, NULL, 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=200', 'Warung Bu Siti', 'Nusantara'),
-
--- Akun Tambahan (Status Pending untuk simulasi Admin menyetujui akun)
-('Andi Wijaya (Pending)', 'andi.pending@fastfood.com', 'user123', '123456', 'customer', 'pending', 'Jl. Borobudur No. 12, Malang', '{"lat": -7.9724, "lng": 112.6456}', NULL, NULL, NULL, NULL, NULL, NULL);
+-- BANYAK AKUN MERCHANT (TOKO) UNTUK LOGIN & DEMO
+('Siti Aminah (Pizza Palace)', 'pizza@fastfood.com', 'user123', NULL, 'merchant', 'approved', 'Jl. Gajayana No. 4, Malang', '{"lat": -7.9424, "lng": 112.6156}', NULL, NULL, NULL, 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=200', 'Pizza Palace', 'Pizza'),
+('Budi Cahyono (Burger Barn)', 'burger@fastfood.com', 'user123', NULL, 'merchant', 'approved', 'Jl. Sukarno Hatta No. 2, Malang', '{"lat": -7.9524, "lng": 112.6256}', NULL, NULL, NULL, 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=200', 'Burger Barn', 'Burger'),
+('Ahmad (KFC Express)', 'kfc@fastfood.com', 'user123', NULL, 'merchant', 'approved', 'Jl. MT Haryono No. 120, Malang', '{"lat": -7.9390, "lng": 112.6290}', NULL, NULL, NULL, 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=200', 'KFC Express Malang', 'Ayam'),
+('Rina (McDonalds)', 'mcd@fastfood.com', 'user123', NULL, 'merchant', 'approved', 'Jl. Merdeka No. 1, Malang', '{"lat": -7.9820, "lng": 112.6310}', NULL, NULL, NULL, 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=200', 'McDonalds Kayutangan', 'Burger'),
+('Agus (Kopi Kenangan)', 'kopi@fastfood.com', 'user123', NULL, 'merchant', 'approved', 'Jl. Gajayana No. 50, Malang', '{"lat": -7.9510, "lng": 112.6090}', NULL, NULL, NULL, 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=200', 'Kopi Kenangan Dinoyo', 'Minuman'),
+('Dewi (Bebek Carok)', 'bebek@fastfood.com', 'user123', NULL, 'merchant', 'approved', 'Jl. Kawi No. 15, Malang', '{"lat": -7.9610, "lng": 112.6220}', NULL, NULL, NULL, 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=200', 'Bebek Carok Madura', 'Nusantara');
